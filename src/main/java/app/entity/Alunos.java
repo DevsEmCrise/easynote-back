@@ -37,7 +37,19 @@ public class Alunos extends Auditable{
 	@NotBlank(message="Por favor, informe o nome do aluno")
 	private String nome;
 	
-	@NotNull(message="Por favor, informe a data de nascimento do aluno")
+	@NotBlank(message="Por favor, informe o RA do aluno")
+	private String ra;
+	
+	@NotBlank(message="Por favor, informe o curso do aluno")
+	private String curso;
+	
+	private boolean ativo;
+	
+	@OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("aluno")
+	private List<Emprestimos> emprestimos;        
+	
+	@Column(name = "data_nascimento")
 	private Date dataNascimento;
 	
 	// @Column(unique=true)
@@ -58,17 +70,7 @@ public class Alunos extends Auditable{
 	private String senha;
 	
 	
-	@NotBlank(message="Por favor, informe o RA do aluno")
-	private String ra;
-	
-	@NotBlank(message="Por favor, informe o curso do aluno")
-	private String curso;
-	
-	private boolean ativo;
-	
-	@OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("aluno")
-	private List<Emprestimos> emprestimos;
+
 	
 	
 }

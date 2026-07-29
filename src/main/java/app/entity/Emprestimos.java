@@ -39,15 +39,15 @@ public class Emprestimos extends Auditable{
 	
 	private String observacao;
 	
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JsonIgnoreProperties("emprestimos")
 	private Alunos aluno;
 	
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JsonIgnoreProperties("emprestimo")
 	private Equipamentos equipamento;
 	
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JsonIgnoreProperties("emprestimos")
 	private Usuarios usuario;
 

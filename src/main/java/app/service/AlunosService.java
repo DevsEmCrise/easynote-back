@@ -28,9 +28,7 @@ public class AlunosService {
 
 	@Autowired
 	private AlunosRepository alunosRepository;
-	
-	@Autowired
-	private AlunoUniamericaService alunoUniamericaService;
+
 
 	@Autowired
 	private EmprestimosRepository emprestimosRepository;
@@ -116,51 +114,15 @@ public class AlunosService {
 
 	
 	public Alunos findByRa(String ra) {
-	    AlunoUniamerica alunoUniamerica = this.alunoUniamericaService.findByRA(ra);
 	    Alunos alunoLocal = alunosRepository.findByRa(ra.trim());
-	
-	 // Se o aluno NÃO estiver mais na view (ou seja, não está ativo)
-	    if (alunoUniamerica == null) {
-	        if (alunoLocal != null) {
-	            alunosRepository.desativarAlunos(alunoLocal.getId());
-	        }
-	        throw new RuntimeException("Aluno não está ativo na instituição!");
-	    }
-	    
-	    if (alunoLocal == null) {
-	    	Alunos novoAluno = new Alunos();
-	        
-	        novoAluno.setAtivo(true);
-	        novoAluno.setCelular("(45) 11111-1111");
-	        novoAluno.setCpf("008.398.349-00");
-	        novoAluno.setCurso(alunoUniamerica.getCurso());
 
-	        // Define a data de nascimento usando SimpleDateFormat
-	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	        Date dataNascimento = null;
-			try {
-				dataNascimento = sdf.parse("2024-01-01");
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	        novoAluno.setDataNascimento(dataNascimento);
-	        
-	        novoAluno.setEmail("fulano@email.com");
-	        novoAluno.setRa(alunoUniamerica.getRa());
-	        novoAluno.setNome(alunoUniamerica.getNome());
-	        novoAluno.setSenha("123");
-	        novoAluno.setUsuario(alunoUniamerica.getNome());
-	        
-	        
-	        novoAluno = this.alunosRepository.save(novoAluno);
-	        
-	        return novoAluno;
-	        
-	    } else {
-	    	return alunoLocal; 
+	    if (alunoLocal == null) {
+	        throw new RuntimeException("Aluno não encontrado no sistema!");
 	    }
+
+	    return alunoLocal;
 	}
+
 	
 	public List<Alunos> findByFilter(String ra, String nome, String curso) {
 	    return this.alunosRepository.findByFilter(ra, nome, curso);
