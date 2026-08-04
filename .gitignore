@@ -35,3 +35,6 @@ build/
 
 # Ignorar application.properties
 application.properties.yml
+
+# Ignorar arquivos .env
+.env

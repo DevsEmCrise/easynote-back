@@ -1,0 +1,26 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: easynote-db
+    env_file:
+      - .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB1_PASS}
+      MYSQL_DATABASE: ${DB1_NAME}
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - easynote-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 5
+
+networks:
+  easynote-net:
+    external: true
+
+volumes:
+  mysql_data:
