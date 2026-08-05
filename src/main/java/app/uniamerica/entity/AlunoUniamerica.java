@@ -1,4 +1,4 @@
-package app.uniamerica.entity;
+/*package app.uniamerica.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -24,4 +24,4 @@ public class AlunoUniamerica {
 	private String curso;
 	
 	
-}
+}*/

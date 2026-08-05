@@ -1,6 +1,7 @@
 package app.service;
 
 import java.time.LocalDate;
+
 import java.time.Period;
 import java.time.ZoneId;
 import java.util.List;
@@ -13,15 +14,12 @@ import org.springframework.stereotype.Service;
 
 import app.entity.Alunos;
 import app.entity.Emprestimos;
-import app.entity.Equipamentos;
+
 import app.repository.AlunosRepository;
 import app.repository.EmprestimosRepository;
-import app.uniamerica.entity.AlunoUniamerica;
-import app.uniamerica.service.AlunoUniamericaService;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 
 @Service
 public class AlunosService {
@@ -92,6 +90,33 @@ public class AlunosService {
 		} else {
 			int alunoDesativado = this.alunosRepository.desativarAlunos(id);
 		    if (alunoDesativado > 0) {
+		        return "Aluno desativado com sucesso!";
+		    } else {
+		        throw new RuntimeException("Erro ao desativar aluno!");
+		    }
+
+		}
+
+	}
+	
+	
+	public String reativar(String ra) {
+
+		Alunos aluno = this.alunosRepository.findByRa(ra);
+	    long id = aluno.getId();
+		aluno.setId(id);
+		Emprestimos emp = new Emprestimos();
+		emp.setAluno(aluno);
+		List<Emprestimos> lista = this.encontrarEmprestimoEmAndamentoPorAluno(emp);
+
+		// Verifica se há empréstimos em andamento
+		if (lista != null && !lista.isEmpty()) {
+
+			throw new RuntimeException("Aluno possui empréstimo em andamento.");
+
+		} else {
+			int alunoReativado = this.alunosRepository.reativarAlunos(id);
+		    if (alunoReativado > 0) {
 		        return "Aluno desativado com sucesso!";
 		    } else {
 		        throw new RuntimeException("Erro ao desativar aluno!");

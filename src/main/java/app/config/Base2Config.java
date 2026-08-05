@@ -1,4 +1,4 @@
-package app.config;
+/*package app.config;
 
 import javax.sql.DataSource;
 
@@ -34,4 +34,4 @@ public class Base2Config {
 				.build();
 	}
 	
-}
+}*/

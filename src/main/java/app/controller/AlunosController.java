@@ -136,7 +136,18 @@ public class AlunosController {
 	@PutMapping("/desativarAluno")
 	public ResponseEntity<String> delete(@RequestParam String ra){
 		try {
+			System.out.println("ra="+ra);
 			String mensagem = this.alunosService.delete(ra);
+			return new ResponseEntity<>(mensagem, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST );
+		}
+	}
+	
+	@PutMapping("/reativarAluno")
+	public ResponseEntity<String> reativar(@RequestParam String ra){
+		try {
+			String mensagem = this.alunosService.reativar(ra);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST );
