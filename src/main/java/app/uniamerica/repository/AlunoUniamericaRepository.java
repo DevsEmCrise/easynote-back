@@ -1,4 +1,4 @@
-package app.uniamerica.repository;
+/*package app.uniamerica.repository;
 
 import java.util.Optional;
 
@@ -10,4 +10,4 @@ public interface AlunoUniamericaRepository extends JpaRepository<AlunoUniamerica
 	
 	public Optional<AlunoUniamerica> findByRa(String ra);
 	
-}
+}*/

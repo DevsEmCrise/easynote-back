@@ -50,6 +50,7 @@ public class EquipamentosController {
 	@PutMapping("/update/{id}")
 	public ResponseEntity<String> update(@Valid @RequestBody Equipamentos equipamento, @PathVariable long id){
 		try {
+			  System.out.println("ENTROU NO UPDATE");
 			System.out.println("ID do Equipamento: " + id);
 			String mensagem = this.equipamentosService.update(equipamento, id);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);
