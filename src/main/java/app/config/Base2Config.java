@@ -1,5 +1,8 @@
 /*package app.config;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -31,7 +34,14 @@ public class Base2Config {
 		return builder
 				.dataSource(dataSource)
 				.packages("app.uniamerica.entity") //colocar aqui o caminho do package das ENTITIES desta configuração
+				.properties(hibernateProperties())
 				.build();
+	}
+
+	private Map<String, Object> hibernateProperties() {
+		Map<String, Object> properties = new HashMap<>();
+		properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+		return properties;
 	}
 	
 }*/

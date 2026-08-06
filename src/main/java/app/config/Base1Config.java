@@ -42,12 +42,11 @@ public class Base1Config {
 	}
 
 
-	//SOMENTE A CLASSE BASEXCONFIG DA BASE PRINCIPAL DO SISTEMA DEVE TER O MÉTODO ABAIXO.
-	//SE ESTA FOR UMA BASE SECUNDÁRIA, RETIRE O MÉTODO ABAIXO E COMENTE A LINHA DE ERRO NO MÉTODO ACIMA
 	private Map<String, Object> hibernateProperties() {
 		Map<String, Object> properties = new HashMap<>();
 		properties.put("hibernate.hbm2ddl.auto", "update");
 		properties.put("hibernate.show_sql", true);
+		properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
 		return properties;
 	}
 
