@@ -1,4 +1,4 @@
-package app.config;
+/*package app.config;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -44,4 +44,4 @@ public class Base2Config {
 		return properties;
 	}
 	
-}
+}*/
