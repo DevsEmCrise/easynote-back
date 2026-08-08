@@ -1,0 +1,13 @@
+name: Deploy Backend AWS
+
+on:
+  push:
+    branches: [main, add/GithubActions]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+			  
