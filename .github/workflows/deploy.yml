@@ -2,7 +2,7 @@ name: Deploy Backend AWS
 
 on:
   push:
-    branches: [main, add/GithubActions]
+    branches: [main, master]
 
 jobs:
   build:
